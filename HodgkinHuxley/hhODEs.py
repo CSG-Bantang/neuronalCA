@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct  4 15:00:27 2024
+Created on Sat Oct  5 00:07:10 2024
 
 @author: reinierramos
 """
@@ -21,12 +21,8 @@ def odes(vars_, t, params_):
     channelNa = GNa * (ENa-V) * np.power(m,3) * h 
     channelK  = GK  * (EK -V) * np.power(n,4)
     channellk = Glk * (Elk-V)
-    # if params_[-1]=='single':
-    #     I = Isingle(t, *params_[:-1].astype(float))
-    # if params_[-1]=='noisy':
-    #     I = Inoisy(t, *params_[:-1].astype(float))
-    if params_.get('type')=='coupled':
-        I = Icoupled(t, params_)
+    
+    I = Iext(params_, t)
 
     dVdt = (channelNa + channelK + channellk + I)/C
     dmdt = alpham(V)*(1-m) - betam(V)*m
@@ -45,23 +41,17 @@ def n_inf(V_=0.0):  return alphan(V_) / (alphan(V_) + betan(V_))
 def m_inf(V_=0.0):  return alpham(V_) / (alpham(V_) + betam(V_))
 def h_inf(V_=0.0):  return alphah(V_) / (alphah(V_) + betah(V_))
 
-def Isingle(t, Iconst = 10, pulseAmp = 0, pulseFreq = 0):
-    pulseFreq /= 1000
-    return Iconst + pulseAmp*np.sin(2*np.pi*pulseFreq*t)
-
-def Inoisy(t, Iconst = 10, pulseAmp = 0, pulseFreq = 0
-         , noiseAmp=0, noise=0):
-    pulseFreq /= 1000
-    return Iconst + pulseAmp*np.sin(2*np.pi*pulseFreq*t) + noiseAmp*(noise - 0.5)
-
-def Icoupled(t, params_):
-    Iconst = params_.get('Iconst')
-    pulseAmp, pulseFreq = params_.get('pulseAmp'), params_.get('pulseFreq')
-    # noiseAmp, noise = params_.get('noiseAmp'), params_.get('noise')
-    g, aij, Vij = params_.get('couplStr'), params_.get('adjMat'), params_.get('Vij')
-    # print(-g*aij*Vij)
-    Iij = np.sum(-g*aij*Vij, axis=0)
-    Isine  = pulseAmp*np.sin(2*np.pi*(pulseFreq/1000)*t)
-    # Inoise = noiseAmp*(noise - 0.5)
-    Iij[0] += Iconst + Isine ##+ Inoise
-    return Iij
+def Iext(params_, t):
+    I0 = params_.get('Iconst')
+    deltaI, f = params_.get('pulseAmp'), params_.get('pulseFreq')/1000
+    Isine = deltaI * np.sin(2*np.pi*f*t)
+    if 'noisy' in params_.get('system'):
+        sigma, eta_t = params_.get('noiseAmp'), params_.get('noise_t')
+        Inoise = sigma*(eta_t - 0.5)
+        I0 += Inoise
+    if 'coupled' in params_.get('system'):
+        g, aij, Vij = params_.get('couplStr'), params_.get('aij'), params_.get('Vij')
+        Iij = np.sum(-g*aij*Vij, axis=0)
+        Iij[0] += I0 + Isine
+        return Iij
+    return I0 + Isine

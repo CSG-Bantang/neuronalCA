@@ -1,76 +1,66 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct  4 14:37:22 2024
+Created on Fri Oct  4 22:41:46 2024
 
 @author: reinierramos
 """
 
 import numpy as np
-import hhSolvers as solve
-from matplotlib import pyplot as plt
 import networkx as nx
+import hhSolvers as solve
+from numpy import random as nrand
+from matplotlib import pyplot as plt
 
-def singleHH(solver='euler', tIni=0, tFin=100, dt=0.025
-           , Iconst = 10, pulseAmp = 0, pulseFreq = 0):
+
+rng = nrand.default_rng()
+
+def solveHH(solver='euler', system='single', Iconst=0,
+            tIni=0, tFin=100, dt=0.025, **kwargs):
+    if 'noisy' in system and solver=='lsoda':
+        raise SolverError(solver, system)
     tList = makeTimeList(tIni, tFin, dt)
-    Iparams = np.array([Iconst, pulseAmp, pulseFreq, 'single'])
+    if 'coupled' in system:
+        L = kwargs.get('latticeSize')
+        pop = L*L
+        G = nx.grid_2d_graph(L,L)  
+        adjMat = nx.to_numpy_array(G)
+        adjMat = np.triu(adjMat, k=0)
+        kwargs.update({'aij':adjMat, 'pop':pop})
+    if 'noisy' in system:
+        noise = rng.random(len(tList))
+        kwargs.update({'noise':noise})
+    kwargs.update({'Iconst':Iconst, 'dt':dt, 'system':system})
     solver_ = solvers.get(solver)
-    soln = solver_(tList, Iparams).T
+    soln = solver_(tList, kwargs).T
     return soln, tList
 
-def noisyHH(solver='euler', tIni=0, tFin=100, dt=0.025
-          , Iconst = 10, pulseAmp = 0, pulseFreq = 0
-          , noiseAmp=10):
-    tList = makeTimeList(tIni, tFin, dt)
-    Iparams = np.array([Iconst, pulseAmp, pulseFreq, noiseAmp, 0, 'noisy'])
-    solver_ = solversNoisy.get(solver)
-    soln = solver_(tList, Iparams).T
-    return soln, tList
-
-def coupledHH(solver='euler', tIni=0, tFin=100, dt=0.025
-            , Iconst = 20, pulseAmp = 0, pulseFreq = 0
-            , noiseAmp=0
-            , numberNeurons=(2,2), couplStr = 1):
-    tList = makeTimeList(tIni, tFin, dt)
-    r, c = numberNeurons        ###     population = r*c
-    G = nx.grid_2d_graph(r,c)  
-    adjMat = nx.to_numpy_array(G)
-    adjMat = np.triu(adjMat, k=0)
-    # pos = {_i:list(G.nodes)[_i] for _i in range(len(list(G.nodes)))}
-    # H = nx.from_numpy_array(adjMat, create_using=nx.DiGraph)
-    # nx.draw(H, pos=pos)
-    # plt.show()
-    
-    Iparams = {'Iconst': Iconst, 'pulseAmp':pulseAmp, 'pulseFreq':pulseFreq
-             # , 'noiseAmp':noiseAmp
-             , 'r':r, 'c':c, 'couplStr':couplStr, 'adjMat':adjMat
-             , 'type':'coupled'}
-    solver_ = solversCoupled.get(solver)
-    soln = solver_(tList, Iparams)
-    return soln, tList
-    
-
-def makeTimeList(tIni=0, tFin=1000, dt=0.025):
+def makeTimeList(tIni=0, tFin=100, dt=0.025):
     return np.arange(tIni, tFin, dt)
 
+class SolverError(Exception):
+    def __init__(self, solver, system
+                , msg='LSODA is not applicable to noisy or stochastic systems.'):
+        self.solver=solver
+        self.system=system
+        super().__init__(msg)
+
 solvers = {'lsoda': solve.lsoda, 'euler': solve.euler, 'rk4':solve.rk4}
-solversNoisy = {'euler': solve.eulerNoisy, 'rk4':solve.rk4Noisy}
-solversCoupled = {'euler': solve.eulerCoupled, 'rk4':solve.rk4Coupled}
+
+soln, tList = solveHH(solver='lsoda', system='single'
+                      , Iconst=20, pulseAmp=0, pulseFreq=0
+                      , noiseAmp=60
+                      , latticeSize=3, couplStr = 0.1
+                      )
+plt.plot(tList, soln[0])
 
 
-# ### Example single
-# soln, tList = singleHH(solver='lsoda', Iconst=0, pulseAmp=10, pulseFreq=4.905, tFin=500)
-# plt.plot(tList, soln[0])
-
-
-# ### Example noisy
-# soln, tList = noisyHH(solver='euler', Iconst=20, pulseAmp=0, pulseFreq=0, tFin=500, noiseAmp=20)
-# plt.plot(tList, soln[0])
-
-### Example coupled
-L = 3
-soln, tList = coupledHH(solver='euler', Iconst=20, tFin=200, noiseAmp=0, numberNeurons=(L,L), couplStr=0.1)
-for i in range(L*L):
-    plt.plot(tList, soln[i,:,0])
-
+"""
+Test Cases:
+    Single neuron: Iconst=2.5, pulseAmp=0, pulseFreq=0
+    Single neuron: Iconst=10, pulseAmp=0, pulseFreq=0
+    Sine Input:    Iconst=0, pulseAmp=10, pulseFreq=4.905
+    Coupled:       Iconst=20, pulseAmp=0, pulseFreq=0
+                   latticeSize=3, couplStr = 0.1
+    Noisy:         noiseAmp=60
+"""
