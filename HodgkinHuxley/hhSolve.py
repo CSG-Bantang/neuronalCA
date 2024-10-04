@@ -17,7 +17,7 @@ rng = nrand.default_rng()
 
 def solveHH(solver='euler', system='single', Iconst=0,
             tIni=0, tFin=100, dt=0.025, **kwargs):
-    if 'noisy' in system and solver=='lsoda':
+    if solver=='lsoda' and system!='single':
         raise SolverError(solver, system)
     tList = makeTimeList(tIni, tFin, dt)
     if 'coupled' in system:
@@ -40,7 +40,7 @@ def makeTimeList(tIni=0, tFin=100, dt=0.025):
 
 class SolverError(Exception):
     def __init__(self, solver, system
-                , msg='LSODA is not applicable to noisy or stochastic systems.'):
+                , msg='LSODA is not applicable to noisy and coupled systems.'):
         self.solver=solver
         self.system=system
         super().__init__(msg)
