@@ -14,9 +14,9 @@ These systems involve solving coupled ordinary differential equations (ODEs) to 
 Import the package by running  `import HodgkinHuxley as HH`. <br>
 Use `HH.solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$. <br>
 This package supports three ODE solvers:
-1) `solver="lsoda"`: LSODA, via odeint function
-2) `solver="euler"`: Forward Euler
-3) `solver="rk4"`: Runge-Kutta 4th Order
+1) `solver='lsoda'`: LSODA, via odeint function
+2) `solver='euler'`: Forward Euler
+3) `solver='rk4'`: Runge-Kutta 4th Order
 
 For the external stimulus, there are four sets of parameters which can be implemented in any combination, except when using LSODA. *LSODA is incompatible with noisy and coupled systems.*
 1) Constant Input: &emsp;&emsp; $I_{1} = I_0$
@@ -29,25 +29,25 @@ For the stimulus duration, provide initial time `ti`, final time `tf` and timest
 ### A) Single HH Systems
 These systems involve single independent HH neuron [[1][2][3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. <br>
 If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. <br>
-Use `HH.solveHH(system="single", solver=, I0=, ti=,tf=,dt=, Is=,fs=)`
+Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`
 
 ### B) Noisy Single HH Systems
 These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. <br>
 For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. <br>
-Use `HH.solveHH(system="noisy", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`
+Use `HH.solveHH(system='noisy', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`
 
 ### C) Coupled HH Systems
 These systems assume a square lattice of size `L` and a population $L\times L$ [[3]](#3). <br>
 Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_4$. <br>
-Use `HH.solveHH(system="coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, L=,g=)`
+Use `HH.solveHH(system='coupled', solver=, I0=, ti=,tf=,dt=, Is=,fs=, L=,g=)`
 
 ### D) Noisy Coupled HH Systems
 These systems assume a uniform noise with a zero time-average, and a square lattice of size `L` and a population $L\times L$. <br>
 Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, $I_3$, and $I_4$. <br>
-For maximum insanity, provide all `kwargs`: `HH.solveHH(system="noisy coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
+For maximum insanity, provide all `kwargs`: `HH.solveHH(system='noisy coupled', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
 
 ### Test Cases:
-Run `main.py` to test the following systems:
+Run `main.py` to test the following systems: <br>
 A.1) Single HH with constant input: `HH.solveHH(system='single', solver='lsoda', I0=2.5)` <br>
 A.2) Single HH with  sinusoid input: `HH.solveHH(system='single', solver='rl4', Is=10, fs=4.905)` <br>
 B) Noisy HH with constant input: `HH.solveHH(system='noisy', solver='euler', In=60)` <br>
