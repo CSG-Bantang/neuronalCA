@@ -15,7 +15,7 @@ figChanA1 = HH.plotChannels(soln, t)
 figChanA1[1].set_title('Single HH with constant input')
 
 
-soln, t   = HH.solveHH(system='single', solver='rl4', Is=10, fs=4.905)
+soln, t   = HH.solveHH(system='single', solver='rk4', Is=10, fs=4.905)
 figVoltA2 = HH.plotVoltage(soln, t)
 figVoltA2[1].set_title('Single HH with sinusoid input')
 figChanA2 = HH.plotChannels(soln, t)
