@@ -60,7 +60,7 @@ def solveHH(system='single', solver='euler',
         Timestep size, in ms.
         The stimulus duration is obtained as `np.arange(ti,tf,dt)`.
     **kwargs : dict
-        Container for parameters valid for each type of stimulus input..
+        Container for parameters valid for each type of stimulus input.
 
     Raises
     ------
