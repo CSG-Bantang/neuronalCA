@@ -32,7 +32,8 @@ If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. <br>
 Use `HH.solveHH(system="single", solver=, I0=, ti=,tf=,dt=, Is=,fs=)`
 
 ### B) Noisy Single HH Systems
-These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. <br>
+These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. <br>
+For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. <br>
 Use `HH.solveHH(system="noisy", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`
 
 ### C) Coupled HH Systems
