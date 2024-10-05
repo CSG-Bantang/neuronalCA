@@ -20,7 +20,7 @@ For the external stimulus, there are four sets of parameters which can be implem
 1) Constant Input: &emsp;&emsp; $I_{1} = I_0$
 2) Sinusoidal Input [[2]](#2): $I_{2} = I_s~\sin(2\pi~f_s t)$
 3) Noisy Input [[3]](#3): &emsp;&emsp; $I_{3} = I_n~\eta(t)$, where $\eta(t)\in[-1,1]$, $\langle \eta \rangle_t = 0$
-4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum\limits_{j} I_{ij}$, where $I_{ij} = -g~a_{ij}~(V_i-V_j)$
+4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum_{j} I_{ij}$, where $I_{ij} = -g~a_{ij}~(V_i-V_j)$
 
 *<sup>a </sup> LSODA is incompatible with noisy and coupled systems.*
 
