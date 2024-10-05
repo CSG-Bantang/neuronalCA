@@ -33,6 +33,57 @@ solvers = {'lsoda': lsoda, 'euler': euler, 'rk4':rk4}
 
 def solveHH(system='single', solver='euler', 
             I0=0, Is=0, fs=0, ti=0, tf=100, dt=0.025, **kwargs):
+    """
+    Solves the Hodgkin-Huxley (HH) `system` using `solver`. 
+
+    Parameters
+    ----------
+    system : str, default is 'single'
+        Type of HH system to solve.
+        Accepted values are: 'single', 'noisy', 'coupled', 'noisy coupled'.
+    solver : str, default is 'euler'
+        Method of solving ODEs
+        Accepted values are: 'lsoda', 'euler', 'rk4'.
+    I0 : float, default is 0
+        Amplitude, in uA/cm^2, of the constant or bias current.
+        If no dynamics is observed, then provide a nonzero value.
+    Is : float, default is 0
+        Amplitude, in uA/cm^2, of the sine input.
+    fs : float, default is 0
+        Frequency, in Hz, of the sine input.
+        Must be nonzero when `Is` is nonzero.
+    ti : float, default is 0
+        Initial time, in ms, for stimulus duration.
+    tf : float, default is 100
+        Final time, in ms, for stimulus duration.
+    dt : float, default is 0.025
+        Timestep size, in ms.
+        The stimulus duration is obtained as `np.arange(ti,tf,dt)`.
+    **kwargs : dict
+        Container for parameters valid for each type of stimulus input..
+
+    Raises
+    ------
+    SolverError
+        If `solver` is 'LSODA' but the `system` is either 'noisy', 'coupled', 
+        or 'noisy coupled.'
+
+    Returns
+    -------
+    soln : 2D or 3D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+    tList : 1D ndarray
+        Time points for which HH is evaluated.
+
+    Valid keywords in `**kwargs`:
+        In : float
+            Amplitude, in uA/cm^2, of the noisy input.
+        L : int
+            Lattice size.
+        g : float
+            Uniform coupling strength of each neuron to its neighbors in the lattice.
+
+    """
     if solver=='lsoda' and system!='single':  raise SolverError(system, solver)
     
     tList = makeTimeList(ti, tf, dt)
@@ -63,6 +114,28 @@ class SolverError(Exception):
         super().__init__(msg)
 
 def plotVoltage(soln, tList):
+    """
+    Plotter function for membrane voltage V(t, in ms) in mV.
+
+    Parameters
+    ----------
+    soln : 2D or 3D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+    tList : 1D ndarray
+        Time points for which HH is evaluated.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure object
+        Figure instance for which V(t) is plotted.
+        Has all the attributes of matplotlib.figure.Figure
+    ax : matplotlib.axes._axes.Axes object
+        Axes instance for which V(t) is plotted.
+        Has all the attributes of matplotlib.axes._axes.Axes
+    
+    `fig` and `ax` are the same as if `fig, ax = plt.subplots()` is called.
+
+    """
     ti, tf = tList[0], tList[-1]
     fig, ax = plt.subplots(figsize=(6,5),
                             subplot_kw=dict(xlim=(ti-0.5, tf+0.5)
@@ -80,6 +153,29 @@ def plotVoltage(soln, tList):
     return fig, ax
 
 def plotChannels(soln, tList):
+    """
+    Plotter function for activation probability of channels 
+    m, h, n over time t in ms.
+
+    Parameters
+    ----------
+    soln : 2D or 3D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+    tList : 1D ndarray
+        Time points for which HH is evaluated.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure object
+        Figure instance for which V(t) is plotted.
+        Has all the attributes of matplotlib.figure.Figure
+    ax : matplotlib.axes._axes.Axes object
+        Axes instance for which V(t) is plotted.
+        Has all the attributes of matplotlib.axes._axes.Axes
+    
+    `fig` and `ax` are the same as if `fig, ax = plt.subplots()` is called.
+
+    """
     ti, tf = tList[0], tList[-1]
     fig, ax = plt.subplots(figsize=(6,4),
                            subplot_kw=dict(xlim=(ti-0.5, tf+0.5)

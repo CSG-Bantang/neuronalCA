@@ -12,6 +12,35 @@ from scipy.integrate import odeint
 
 
 def lsoda(tList, Iparams):
+    """
+    Solve the ODEs using LSODA (Livermore Solver for Ordinary Differential
+    Equations) via the implementation of `scipy.integrate.odeint`).
+
+    Parameters
+    ----------
+    tList : 1D array
+        List of time values to solve the ODE.
+    Iparams : dict
+        Container for parameters valid for each type of stimulus input.
+
+    Returns
+    -------
+    soln : 2D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+
+    Valid keywords in `Iparams`:
+        system : str
+            Type of HH system ('single', 'noisy', 'coupled', 'noisy coupled').
+        dt : float
+            Timestep size, in ms.
+        I0 : float
+            Amplitude, in uA/cm^2, of the constant or bias current.
+        Is : float
+            Amplitude, in uA/cm^2, of the sine input.
+        fs : float
+            Frequency, in Hz, of the sine input.
+
+    """
     Vrest = 0
     guess = [Vrest,m_inf(Vrest), h_inf(Vrest), n_inf(Vrest)]
     # guess   = np.array([-0.283, 0.051, 0.584, 0.321])
@@ -19,6 +48,46 @@ def lsoda(tList, Iparams):
     return soln
 
 def euler(tList, Iparams):
+    """
+    Solve the ODEs using the forward Euler method.
+
+    Parameters
+    ----------
+    tList : 1D array
+        List of time values to solve the ODE.
+    Iparams : dict
+        Container for parameters valid for each type of stimulus input.
+
+    Returns
+    -------
+    soln : 2D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+        
+    Valid keywords in `params_`:
+        system : str
+            Type of HH system ('single', 'noisy', 'coupled', 'noisy coupled').
+        dt : float
+            Timestep size, in ms.
+        I0 : float
+            Amplitude, in uA/cm^2, of the constant or bias current.
+        Is : float
+            Amplitude, in uA/cm^2, of the sine input.
+        fs : float
+            Frequency, in Hz, of the sine input.
+        In : float
+            Amplitude, in uA/cm^2, of the noisy input.
+        noise : 1D ndarray
+            List of generated random numbers from a uniform distribution [0, 1].
+        L : int
+            Lattice size.
+        pop : int
+            Total number of neurons in the square lattice of size `L`.
+        aij : 2D ndarray
+            Adjacency matrix of the square lattice.
+        g : float
+            Uniform coupling strength of each neuron to its neighbors in the lattice.
+
+    """
     dt = Iparams.get('dt')
     # Vrest = 0
     # guess = [Vrest,m_inf(Vrest), h_inf(Vrest), n_inf(Vrest)]
@@ -46,6 +115,46 @@ def euler(tList, Iparams):
     return soln
 
 def rk4(tList, Iparams):
+    """
+    Solve the ODEs using the 4th-order Runge-Kutta method.
+
+    Parameters
+    ----------
+    tList : 1D array
+        List of time values to solve the ODE.
+    Iparams : dict
+        Container for parameters valid for each type of stimulus input.
+
+    Returns
+    -------
+    soln : 2D ndarray
+        Values of V, m, h, n for al `t` in `tList`.
+        
+    Valid keywords in `params_`:
+        system : str
+            Type of HH system ('single', 'noisy', 'coupled', 'noisy coupled').
+        dt : float
+            Timestep size, in ms.
+        I0 : float
+            Amplitude, in uA/cm^2, of the constant or bias current.
+        Is : float
+            Amplitude, in uA/cm^2, of the sine input.
+        fs : float
+            Frequency, in Hz, of the sine input.
+        In : float
+            Amplitude, in uA/cm^2, of the noisy input.
+        noise : 1D ndarray
+            List of generated random numbers from a uniform distribution [0, 1].
+        L : int
+            Lattice size.
+        pop : int
+            Total number of neurons in the square lattice of size `L`.
+        aij : 2D ndarray
+            Adjacency matrix of the square lattice.
+        g : float
+            Uniform coupling strength of each neuron to its neighbors in the lattice.
+
+    """
     dt = Iparams.get('dt')
     # Vrest = 0
     # guess = [Vrest,m_inf(Vrest), h_inf(Vrest), n_inf(Vrest)]
