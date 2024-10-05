@@ -71,7 +71,7 @@ def solveHH(system='single', solver='euler',
     Returns
     -------
     soln : 2D or 3D ndarray
-        Values of V, m, h, n for al `t` in `tList`.
+        Values of V, m, h, n for all `t` in `tList`.
     tList : 1D ndarray
         Time points for which HH is evaluated.
 
@@ -138,10 +138,10 @@ def plotVoltage(soln, tList):
     """
     ti, tf = tList[0], tList[-1]
     fig, ax = plt.subplots(figsize=(6,5),
-                            subplot_kw=dict(xlim=(ti-0.5, tf+0.5)
-                                          , ylim=(-20,120)
-                                          , xlabel='Time, in ms'
-                                          , ylabel='Voltage, in mV'))
+                           subplot_kw=dict(xlim=(ti-0.5, tf+0.5)
+                                         , ylim=(-20,120)
+                                         , xlabel='Time, in ms'
+                                         , ylabel='Voltage, in mV'))
     V, _, _, _ = soln
     if len(V.shape) == 2:
         for _i in range(V.shape[1]):
