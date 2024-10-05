@@ -9,9 +9,9 @@ This an ongoing project highlighting systems involving:
 
 
 ## I. Hodgkin-Huxley (HH) Systems
-These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential in the neuronal membrane [[1]](#1). <br>
+These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[1]](#1). <br>
 ### Usage:
-Importing package:  `importHodgkinHuxley as HH`.
+Import the package by running  `import HodgkinHuxley as HH`. <br>
 Use `HH.solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$. <br>
 This package supports three ODE solvers:
 1) `solver="lsoda"`: LSODA, via odeint function
