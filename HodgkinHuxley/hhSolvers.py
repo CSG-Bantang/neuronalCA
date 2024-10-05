@@ -45,7 +45,6 @@ def euler(tList, Iparams):
         else: soln[_i+1] = guess
     return soln
 
-    
 def rk4(tList, Iparams):
     dt = Iparams.get('dt')
     # Vrest = 0

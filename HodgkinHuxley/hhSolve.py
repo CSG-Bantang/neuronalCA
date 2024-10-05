@@ -15,44 +15,45 @@ from matplotlib import pyplot as plt
 
 rng = nrand.default_rng()
 
-def solveHH(solver='euler', system='single', Iconst=0,
-            tIni=0, tFin=100, dt=0.025, **kwargs):
-    if solver=='lsoda' and system!='single':
-        raise SolverError(solver, system)
-    tList = makeTimeList(tIni, tFin, dt)
+def solveHH(system='single', solver='euler', 
+            I0=0, Is=0, fs=0, ti=0, tf=100, dt=0.025, **kwargs):
+    if solver=='lsoda' and system!='single':  raise SolverError(system, solver)
+    
+    tList = makeTimeList(ti, tf, dt)
+    
     if 'coupled' in system:
-        L = kwargs.get('latticeSize')
-        pop = L*L
+        L = kwargs.get('L')
+        population = L*L
         G = nx.grid_2d_graph(L,L)  
         adjMat = nx.to_numpy_array(G)
         adjMat = np.triu(adjMat, k=0)
-        kwargs.update({'aij':adjMat, 'pop':pop})
+        kwargs.update({'aij':adjMat, 'pop':population})
+        
     if 'noisy' in system:
         noise = rng.random(len(tList))
         kwargs.update({'noise':noise})
-    kwargs.update({'Iconst':Iconst, 'dt':dt, 'system':system})
+    kwargs.update({'I0':I0, 'Is':Is, 'fs':fs, 'dt':dt, 'system':system})
     solver_ = solvers.get(solver)
     soln = solver_(tList, kwargs).T
     return soln, tList
 
-def makeTimeList(tIni=0, tFin=100, dt=0.025):
-    return np.arange(tIni, tFin, dt)
+def makeTimeList(ti=0, tf=100, dt=0.025):   return np.arange(ti, tf, dt)
 
 class SolverError(Exception):
-    def __init__(self, solver, system
-                , msg='LSODA is not applicable to noisy and coupled systems.'):
-        self.solver=solver
+    def __init__(self, system, solver
+                , msg='LSODA is incompatible to noisy and coupled systems.'):
         self.system=system
+        self.solver=solver
         super().__init__(msg)
 
 solvers = {'lsoda': solve.lsoda, 'euler': solve.euler, 'rk4':solve.rk4}
 
-soln, tList = solveHH(solver='lsoda', system='single'
-                      , Iconst=20, pulseAmp=0, pulseFreq=0
-                      , noiseAmp=60
-                      , latticeSize=3, couplStr = 0.1
-                      )
-plt.plot(tList, soln[0])
+# soln, tList = solveHH(solver='lsoda', system='single'
+#                       # , I0=20, Is=0, fs=0
+#                       # , In=60
+#                       # , L=3, g = 0.1
+#                        )
+# plt.plot(tList, soln[0])
 
 
 """

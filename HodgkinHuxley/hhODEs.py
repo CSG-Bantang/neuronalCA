@@ -42,15 +42,15 @@ def m_inf(V_=0.0):  return alpham(V_) / (alpham(V_) + betam(V_))
 def h_inf(V_=0.0):  return alphah(V_) / (alphah(V_) + betah(V_))
 
 def Iext(params_, t):
-    I0 = params_.get('Iconst')
-    deltaI, f = params_.get('pulseAmp'), params_.get('pulseFreq')/1000
-    Isine = deltaI * np.sin(2*np.pi*f*t)
+    I0 = params_.get('I0')
+    Is, fs = params_.get('Is'), params_.get('fs')/1000
+    Isine = Is * np.sin(2*np.pi*fs*t)
     if 'noisy' in params_.get('system'):
-        sigma, eta_t = params_.get('noiseAmp'), params_.get('noise_t')
+        sigma, eta_t = params_.get('In'), params_.get('noise_t')
         Inoise = sigma*(eta_t - 0.5)
         I0 += Inoise
     if 'coupled' in params_.get('system'):
-        g, aij, Vij = params_.get('couplStr'), params_.get('aij'), params_.get('Vij')
+        g, aij, Vij = params_.get('g'), params_.get('aij'), params_.get('Vij')
         Iij = np.sum(-g*aij*Vij, axis=0)
         Iij[0] += I0 + Isine
         return Iij
