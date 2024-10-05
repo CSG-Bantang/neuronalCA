@@ -27,7 +27,7 @@ For the external stimulus, there are four sets of parameters which can be implem
 For the stimulus duration, provide initial time `ti`, final time `tf` and timestep `dt`.
 
 ### A) Single HH Systems
-These systems involve single independent HH neuron [[1,2,3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. <br>
+These systems involve single independent HH neuron [[1][2][3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. <br>
 Use `solveHH(system="single", solver=, I0=, ti=,tf=,dt=, Is=,f_s=)`
 
 ### B) Noisy Single HH Systems
