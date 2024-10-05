@@ -10,7 +10,9 @@ This an ongoing project highlighting systems involving:
 
 ## I. Hodgkin-Huxley (HH) Systems
 These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential in the neuronal membrane [[1]](#1). <br>
-Use `solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$. <br>
+### Usage:
+Importing package:  `importHodgkinHuxley as HH`.
+Use `HH.solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$. <br>
 This package supports three ODE solvers:
 1) `solver="lsoda"`: LSODA, via odeint function
 2) `solver="euler"`: Forward Euler
@@ -29,28 +31,29 @@ For the stimulus duration, provide initial time `ti`, final time `tf` and timest
 ### A) Single HH Systems
 These systems involve single independent HH neuron [[1][2][3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. <br>
 If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. <br>
-Use `solveHH(system="single", solver=, I0=, ti=,tf=,dt=, Is=,fs=)`
+Use `HH.solveHH(system="single", solver=, I0=, ti=,tf=,dt=, Is=,fs=)`
 
 ### B) Noisy Single HH Systems
 These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `euler` or `rk4`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. <br>
-Use `solveHH(system="noisy", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`
+Use `HH.solveHH(system="noisy", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`
 
 ### C) Coupled HH Systems
 These systems assume a square lattice of size `L` and a population $L\times L$ [[3]](#3). <br>
 Use either `euler` or `rk4`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_4$. <br>
-Use `solveHH(system="coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, L=,g=)`
+Use `HH.solveHH(system="coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, L=,g=)`
 
 ### D) Noisy Coupled HH Systems
 These systems assume a uniform noise with a zero time-average, and a square lattice of size `L` and a population $L\times L$. <br>
 Use either `euler` or `rk4`. For the external stimulus, use any combination of $I_1$, $I_2$, $I_3$, and $I_4$. <br>
-For maximum insanity, provide all `kwargs`: `solveHH(system="noisy coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
+For maximum insanity, provide all `kwargs`: `HH.solveHH(system="noisy coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
 
 ### Test Cases:
-A.1) Single HH with constant input: `solveHH(system='single', solver='lsoda', I0=2.5)` <br>
-A.2) Single HH with  sinusoid input: `solveHH(system='single', solver='rl4', Is=10, fs=4.905)` <br>
-B) Noisy HH with constant input: `solveHH(system='noisy', solver='euler', In=60)` <br>
-C) Coupled HH with constant input: `solveHH(system='coupled', solver='euler', I0=10, L=3, g=0.1)` <br>
-D) Noisy Coupled HH with bias, sinusoid, noisy input: `solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)` <br>
+Run `main.py` to test the following systems:
+A.1) Single HH with constant input: `HH.solveHH(system='single', solver='lsoda', I0=2.5)` <br>
+A.2) Single HH with  sinusoid input: `HH.solveHH(system='single', solver='rl4', Is=10, fs=4.905)` <br>
+B) Noisy HH with constant input: `HH.solveHH(system='noisy', solver='euler', In=60)` <br>
+C) Coupled HH with constant input: `HH.solveHH(system='coupled', solver='euler', I0=10, L=3, g=0.1)` <br>
+D) Noisy Coupled HH with bias, sinusoid, noisy input: `HH.solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)` <br>
 
 ## References:
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
