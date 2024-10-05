@@ -46,11 +46,11 @@ Use either `euler` or `rk4`. For the external stimulus, use any combination of $
 For maximum insanity, provide all `kwargs`: `solveHH(system="noisy coupled", solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
 
 ### Test Cases:
-A) Single HH with constant input: `solveHH(system='single', solver='lsoda', I0=2.5)` <br>
-B) Single HH with  sinusoid input: `solveHH(system='single', solver='rl4', Is=10, fs=4.905)` <br>
-C) Noisy HH with constant input: `solveHH(system='noisy', solver='euler', In=60)` <br>
-D) Coupled HH with constant input: `solveHH(system='coupled', solver='euler', L=3, g=0.1)` <br>
-E) Noisy Coupled HH with bias, sinusoid, noisy input: `solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)` <br>
+A.1) Single HH with constant input: `solveHH(system='single', solver='lsoda', I0=2.5)` <br>
+A.2) Single HH with  sinusoid input: `solveHH(system='single', solver='rl4', Is=10, fs=4.905)` <br>
+B) Noisy HH with constant input: `solveHH(system='noisy', solver='euler', In=60)` <br>
+C) Coupled HH with constant input: `solveHH(system='coupled', solver='euler', L=3, g=0.1)` <br>
+D) Noisy Coupled HH with bias, sinusoid, noisy input: `solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)` <br>
 
 ## References:
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
