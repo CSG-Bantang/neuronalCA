@@ -110,7 +110,7 @@ def plotXvsT(x, t):
                                          , ylim=(-0.05,1.05)
                                          , xlabel='Timestep, t'
                                          , ylabel='Steady-state, x(t)'))
-    ax.plot(t, x, color='k', lw=2)
+    ax.plot(t, x, color='k', lw=1, marker='d', markersize=8, markerfacecolor='white')
     ax.locator_params(axis='both', tight=True, nbins=5)
     return fig, ax
 

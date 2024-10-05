@@ -54,7 +54,29 @@ B) Noisy HH with constant input: `HH.solveHH(system='noisy', solver='euler', In=
 C) Coupled HH with constant input: `HH.solveHH(system='coupled', solver='euler', I0=10, L=3, g=0.1)` <br>
 D) Noisy Coupled HH with bias, sinusoid, noisy input: `HH.solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)` <br>
 
+## II. Logistic Map (LM) Systems
+These systems involve solving logistic equation given by $x_{t+1} = r x_{t} (1-x{t})$, where
+$r$ is the growth rate and $x_{t}$ is the state of the LM system at time $t$. <br>
+### Usage:
+Import the package by running  `import LogisticMap as LM`. <br>
+For the duration, provide initial time `ti`, final time `tf` and timestep `dt`.
+
+### A) Steady-state x(t)
+Use `LM.solveLM(r=,x0=, ti=, tf=, dt=)` to obtain steady-state values over time.
+Provide the growth rate `r`, where $r \in [0,4]$. Provide initial state `x0` of the system where $x_{0} \in [0,1]$. <br>
+LM systems are highly stable within these range of values.
+
+### B) Return Map (or Input-Output Map)
+Use `LM.logisticReturnMap(r)` to obtain the return map ($x_{t+1}$ vs $x_{t}$) of the logistic equation.
+Provide the growth rate `r`, where $r \in [0,4]$. LM systems are highly stable within these range of values.
+
+### Test Cases:
+Run `main.py` to test the following: <br>
+A) Steady-state: `x, t = LM.solveLM(r, x0, ti=0, tf=50, dt=1)`, compare with varying `r` and `x0`, $r=[0,1,2,3,4]$ and $x_0=[0.25, 0.5, 0.9]$.
+B) Return map: `x, y = LM.logisticReturnMap(r)`, compare with varying `r`, $r=[0,1,2,3,4]$.
+
 ## References:
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
 <a id="2">[2]</a> Escosio, Rey Audie S., and Johnrob Y. Bantang. "Frequency response analysis of a Hodgkin-Huxley neuron in a generalized current density stimulus." Proceedings of the Samahang Pisika ng Pilipinas (2016). <br>
 <a id="3">[3]</a> Pang, James Christopher S., Christopher P. Monterola, and Johnrob Y. Bantang. "Noise-induced synchronization in a lattice Hodgkin–Huxley neural network." Physica A: Statistical Mechanics and its Applications 393 (2014): 638-645. <br>
+<a id="4">[4]</a> Tsuchiya, Takashi and Yamagishi, Daisuke. "The Complete Bifurcation Diagram for the Logistic Map" Zeitschrift für Naturforschung A, vol. 52, no. 6-7, 1997, pp. 513-516. https://doi.org/10.1515/zna-1997-6-708 <br>

@@ -8,6 +8,7 @@ Created on Sat Oct  5 14:58:00 2024
 
 import HodgkinHuxley as HH
 import LogisticMap as LM
+from matplotlib import pyplot as plt
 
 
 ### Hodgkin-Huxley Systems
@@ -37,15 +38,20 @@ soln, t  = HH.solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=
 figVoltD = HH.plotVoltage(soln, t)
 figVoltD[1].set_title('Noisy Coupled HH with bias, sinusoid, noisy input')
 
-
+plt.close()
 
 ### Logistic Map Systems
-r, x0 = 4, 0.3
-ti, tf, dt = 0, 50, 1
-x, t = LM.solveLM(r, x0, ti, tf, dt)
-figSteadyState = LM.plotXvsT(x, t)
-figSteadyState[1].set_title(f'Steady-state of LM system, $r={r}$, $x_0={x0}$')
+for r in [0,1,2,3,4]:
+    for x0 in [0.25, 0.5, 0.9]:
+        x, t = LM.solveLM(r, x0, ti=0, tf=25, dt=1)
+        figSteadyState = LM.plotXvsT(x, t)
+        figSteadyState[1].set_title(f'Steady-state of LM system, $r={r}$, $x_0={x0}$')
+        plt.show()
+        plt.close()
 
-x, y = LM.logisticReturnMap(r)
-figLMap = LM.plotReturnMap(x, y)
-figLMap[1].set_title(f'Return map of LM system, $r={r}$')
+for r in [0,1,2,3,4]:
+    x, y = LM.logisticReturnMap(r)
+    figLMap = LM.plotReturnMap(x, y)
+    figLMap[1].set_title(f'Return map of LM system, $r={r}$')
+    plt.show()
+    plt.close()
