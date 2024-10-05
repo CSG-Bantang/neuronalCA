@@ -8,12 +8,28 @@ Created on Fri Oct  4 22:41:46 2024
 
 import numpy as np
 import networkx as nx
-import hhSolvers as solve
-from numpy import random as nrand
+from .hhSolvers import lsoda, euler, rk4
 from matplotlib import pyplot as plt
+from numpy import random as nrand
 
+import matplotlib as mpl
 
 rng = nrand.default_rng()
+
+axislabelsFontsize     = 17
+titleFontsize          = 15
+ticklabelsFontsize     = 15
+dpiSize                = 300
+figureParameters = {  'axes.labelsize' : axislabelsFontsize
+                    , 'axes.titlesize' : titleFontsize
+                    , 'xtick.labelsize': ticklabelsFontsize
+                    , 'ytick.labelsize': ticklabelsFontsize
+                    , 'savefig.dpi'    : dpiSize
+                    , 'image.origin'   : 'lower'
+                    }
+mpl.rcParams.update(figureParameters)
+
+solvers = {'lsoda': lsoda, 'euler': euler, 'rk4':rk4}
 
 def solveHH(system='single', solver='euler', 
             I0=0, Is=0, fs=0, ti=0, tf=100, dt=0.025, **kwargs):
@@ -46,22 +62,34 @@ class SolverError(Exception):
         self.solver=solver
         super().__init__(msg)
 
-solvers = {'lsoda': solve.lsoda, 'euler': solve.euler, 'rk4':solve.rk4}
+def plotVoltage(soln, tList):
+    ti, tf = tList[0], tList[-1]
+    fig, ax = plt.subplots(figsize=(6,5),
+                            subplot_kw=dict(xlim=(ti-0.5, tf+0.5)
+                                          , ylim=(-20,120)
+                                          , xlabel='Time, in ms'
+                                          , ylabel='Voltage, in mV'))
+    V, _, _, _ = soln
+    if len(V.shape) == 2:
+        for _i in range(V.shape[1]):
+            if _i == 0:  ax.plot(tList, V[:,_i], color='k', lw=2)
+            else:        ax.plot(tList, V[:,_i])
+    elif len(V.shape) == 1:
+        ax.plot(tList, V, color='k', lw=2)
+    ax.locator_params(axis='both', tight=True, nbins=5)
+    return fig, ax
 
-# soln, tList = solveHH(solver='lsoda', system='single'
-#                       # , I0=20, Is=0, fs=0
-#                       # , In=60
-#                       # , L=3, g = 0.1
-#                        )
-# plt.plot(tList, soln[0])
-
-
-"""
-Test Cases:
-    Single neuron: Iconst=2.5, pulseAmp=0, pulseFreq=0
-    Single neuron: Iconst=10, pulseAmp=0, pulseFreq=0
-    Sine Input:    Iconst=0, pulseAmp=10, pulseFreq=4.905
-    Coupled:       Iconst=20, pulseAmp=0, pulseFreq=0
-                   latticeSize=3, couplStr = 0.1
-    Noisy:         noiseAmp=60
-"""
+def plotChannels(soln, tList):
+    ti, tf = tList[0], tList[-1]
+    fig, ax = plt.subplots(figsize=(6,4),
+                           subplot_kw=dict(xlim=(ti-0.5, tf+0.5)
+                                         , ylim=(-0.05,1.05)
+                                         , xlabel='Time, in ms'
+                                         , ylabel='Gating variable'))
+    _, m, h, n = soln    
+    ax.plot(tList, m, color='darkgreen', lw=2, label='Na activation')
+    ax.plot(tList, h, color='turquoise', lw=2, label='Na inactivation')
+    ax.plot(tList, n, color='goldenrod', lw=2, label='K activation')
+    plt.legend(fontsize=12, loc=1)
+    ax.locator_params(axis='both', tight=True, nbins=5)
+    return fig, ax
