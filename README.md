@@ -62,17 +62,18 @@ Import the package by running  `import LogisticMap as LM`. <br>
 For the duration, provide initial time `ti`, final time `tf` and timestep `dt`.
 
 ### A) Steady-state x(t)
-Use `LM.solveLM(r=,x0=, ti=, tf=, dt=)` to obtain steady-state values over time.
+Use `LM.solveLM(r=,x0=, ti=, tf=, dt=)` to obtain steady-state values over time. <br>
 Provide the growth rate `r`, where $r \in [0,4]$. Provide initial state `x0` of the system where $x_{0} \in [0,1]$. <br>
 LM systems are highly stable within these range of values.
 
 ### B) Return Map (or Input-Output Map)
-Use `LM.logisticReturnMap(r)` to obtain the return map ($x_{t+1}$ vs $x_{t}$) of the logistic equation.
-Provide the growth rate `r`, where $r \in [0,4]$. LM systems are highly stable within these range of values.
+Use `LM.logisticReturnMap(r)` to obtain the return map ($x_{t+1}$ vs $x_{t}$) of the logistic equation. <br>
+Provide the growth rate `r`, where $r \in [0,4]$. <br>
+LM systems are highly stable within these range of values.
 
 ### Test Cases:
 Run `main.py` to test the following: <br>
-A) Steady-state: `x, t = LM.solveLM(r, x0, ti=0, tf=50, dt=1)`, compare with varying `r` and `x0`, $r=[0,1,2,3,4]$ and $x_0=[0.25, 0.5, 0.9]$.
+A) Steady-state: `x, t = LM.solveLM(r, x0, ti=0, tf=50, dt=1)`, compare with varying `r` and `x0`, $r=[0,1,2,3,4]$ and $x_0=[0.25, 0.5, 0.9]$. <br>
 B) Return map: `x, y = LM.logisticReturnMap(r)`, compare with varying `r`, $r=[0,1,2,3,4]$.
 
 ## References:
