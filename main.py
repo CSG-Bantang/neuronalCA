@@ -63,7 +63,7 @@ for r in [0,1,2,3,4]:
 soln=GOL.solveGOL(system=0, L=50, p=0.5, duration=30)
 GOL.animateGOL(soln)
 
-soln=GOL.solveGOL(system=17, duration=30)
+soln=GOL.solveGOL(system=11, duration=30)
 GOL.animateGOL(soln)
 
 

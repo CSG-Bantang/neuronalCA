@@ -25,7 +25,7 @@ For the external stimulus, there are four sets of parameters which can be implem
 4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum_{j} I_{ij}$, where $I_{ij} = -g a_{ij} (V_i-V_j)$
 
 **A) Single HH Systems** <br>
-These systems involve single independent HH neuron [[1-3]](#1)(#2)(#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`.
+These systems involve single independent HH neuron [[1-3]](#1). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`.
 
 **B) Noisy Single HH Systems** <br>
 These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. Use `HH.solveHH(system='noisy', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`.
@@ -65,16 +65,16 @@ B) Return map: `x, y = LM.logisticReturnMap(r)`, compare with varying `r`, $r=[0
 
 
 ### III. Game of Life (GOL) Cellular Automata (CA)
-These systems involve solving for the snapshots of the spatiotemporal dynamics of a Game of Life CA  [[5,6]](#5, #6).
+These systems involve solving for the snapshots of the spatiotemporal dynamics of a Game of Life CA  [[5,6]](#5).
 
 ### Usage:
-Import the package by running  `import GameOfLife as GOL`. The `duration` specifies the number of snapshots to be recorded.
+Import the package by running  `import GameOfLife as GOL`. The `duration` specifies the number of snapshots to be recorded. To view the animation as GIF, use `GOL.animateGOL(soln, out='anim.gif')`. This will save a local file 'anim.gif'.
 
 **A) Random Initial State** <br>
 Use `GOL.solveGOL(system=0, L=, p=, duration=)` to obtain the `duration` number of snapshots. The CA is set in a lattice size `L` and initialized with states from a uniform random distribution with state density "Alive":`p` and "Dead":`1-p`.
 
 **B) Still-Lifes** <br>
-These are GOL patterns that does not change over time. Specify `system` as a number to observe the following:
+These are GOL patterns that does not change over time [[6]](#6). Specify `system` as a number to observe the following:
 1) Block
 2) Beehive
 3) Loaf
@@ -82,7 +82,30 @@ These are GOL patterns that does not change over time. Specify `system` as a num
 5) Tub
 
 **C) Oscillators** <br>
+These are GOL patterns that returns to the initial state after finite number of timesteps [[6]](#6). Specify `system` as a number to observe the following:
+6) Blinker (period 2)
+7) Toad (period 3)
+8) Beacon (period 2)
+9) Pulsar (period 3)
+10) Pentadecathlon (period 15)
 
+**D) Creepers and Spaceships** <br>
+These are GOL patterns that continuously creeps or glides across the lattice [[6]](#6). Specify `system` as a number to observe the following:
+11) Glider
+12) Lightweight spaceship (LWSS)
+13) Middleweight spaceship (MWSS)
+14) Heavyweight spaceship (HWSS)
+
+**E) Methuselahs** <br>
+These are GOL patterns that takes long periods to stabilize to other patterns.
+15) R-pentomino (1103 timesteps)
+16) Die Hard (130 timesteps)
+17) Acorn (5206 timesteps)
+
+### Test Cases:
+Run `main.py` to test the following: <br>
+A) Random initial state: `soln=GOL.solveGOL(system=0, L=50, p=0.5, duration=30)`.<br>
+B) Glider : `GOL.solveGOL(system=11, duration=30)`.
 
 ## References:
 
