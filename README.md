@@ -7,7 +7,7 @@ This an ongoing project highlighting systems involving:
 4) Brian's Brain
 5) Neuronal Cellular Automata
 
-### I. Hodgkin-Huxley (HH) Systems
+## I. Hodgkin-Huxley (HH) Systems
 These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[1]](#1).
 ### Usage:
 Import the package by running  `import HodgkinHuxley as HH`. 
@@ -45,7 +45,7 @@ C) Coupled HH with constant input: `HH.solveHH(system='coupled', solver='euler',
 D) Noisy Coupled HH with bias, sinusoid, noisy input: `HH.solveHH(system='noisy coupled', solver='euler', I0=2.5, Is=10, fs=4.905, In=60, L=3, g=0.1)`
 
 
-### II. Logistic Map (LM) Systems
+## II. Logistic Map (LM) Systems
 These systems involve solving logistic equation given by $x_{t+1} = r x_{t} (1-x{t})$, where
 $r$ is the growth rate and $x_{t}$ is the state of the LM system at time $t$  [[4]](#4).
 
@@ -64,7 +64,7 @@ A) Steady-state: `x, t = LM.solveLM(r, x0, ti=0, tf=50, dt=1)`, compare with var
 B) Return map: `x, y = LM.logisticReturnMap(r)`, compare with varying `r`, $r=[0,1,2,3,4]$.
 
 
-### III. Game of Life (GOL) Cellular Automata (CA)
+## III. Game of Life (GOL) Cellular Automata (CA)
 These systems involve solving for the snapshots of the spatiotemporal dynamics of a Game of Life CA  [[5,6]](#5).
 
 ### Usage:
