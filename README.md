@@ -75,9 +75,9 @@ Use `GOL.solveGOL(system=0, L=, p=, duration=)` to obtain the `duration` number 
 
 **B) Still-Lifes** <br>
 These are GOL patterns that does not change over time [[6]](#6). Specify `system` as the number to observe the following:
-1. Block
-2. Beehive
-3. Loaf
+- 1: Block
+- 2: Beehive
+- 3: Loaf
 4. Boat
 5. Tub
 
