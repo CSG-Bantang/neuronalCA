@@ -28,7 +28,8 @@ def solveGOL(system=0, L=50, p=0.5, duration=30):
     Parameters
     ----------
     system : int, default is 0
-        DESCRIPTION. The default is 0.
+        Determines initial state of the CA.
+        If 0, then a random state is initialized.
         Accepted values are 0 to 17.
     L : int, default is 50
         Lattice size for the GOL CA.
