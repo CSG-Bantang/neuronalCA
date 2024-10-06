@@ -83,9 +83,9 @@ These are GOL patterns that does not change over time [[6]](#6). Specify `system
 
  **C) Oscillators** <br>
  These are GOL patterns that returns to the initial state after finite number of timesteps [[6]](#6). Specify `system` as the number to observe the following:
-6. Blinker (period 2)
-7. Toad (period 3)
-8. Beacon (period 2)
+6\. Blinker (period 2)
+7\. Toad (period 3)
+8\. Beacon (period 2)
 9. Pulsar (period 3)
 10. Pentadecathlon (period 15)
 
