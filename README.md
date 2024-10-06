@@ -25,7 +25,7 @@ For the external stimulus, there are four sets of parameters which can be implem
 4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum_{j} I_{ij}$, where $I_{ij} = -g a_{ij} (V_i-V_j)$
 
 **A) Single HH Systems** <br>
-These systems involve single independent HH neuron [[1-3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`.
+These systems involve single independent HH neuron [[1-3]](#1)(#2)(#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`.
 
 **B) Noisy Single HH Systems** <br>
 These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. Use `HH.solveHH(system='noisy', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`.
@@ -65,7 +65,7 @@ B) Return map: `x, y = LM.logisticReturnMap(r)`, compare with varying `r`, $r=[0
 
 
 ### III. Game of Life (GOL) Cellular Automata (CA)
-These systems involve solving for the snapshots of the spatiotemporal dynamics of a Game of Life CA  [[5]](#5).
+These systems involve solving for the snapshots of the spatiotemporal dynamics of a Game of Life CA  [[5,6]](#5, #6).
 
 ### Usage:
 Import the package by running  `import GameOfLife as GOL`. The `duration` specifies the number of snapshots to be recorded.
