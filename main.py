@@ -8,10 +8,11 @@ Created on Sat Oct  5 14:58:00 2024
 
 import HodgkinHuxley as HH
 import LogisticMap as LM
+import GameOfLife as GOL
 from matplotlib import pyplot as plt
 
 
-### Hodgkin-Huxley Systems
+# ### Hodgkin-Huxley Systems
 soln, t   = HH.solveHH(system='single', solver='lsoda', I0=2.5)
 figVoltA1 = HH.plotVoltage(soln, t)
 figVoltA1[1].set_title('Single HH with constant input')
@@ -40,6 +41,7 @@ figVoltD[1].set_title('Noisy Coupled HH with bias, sinusoid, noisy input')
 
 plt.close()
 
+
 ### Logistic Map Systems
 for r in [0,1,2,3,4]:
     for x0 in [0.25, 0.5, 0.9]:
@@ -55,3 +57,13 @@ for r in [0,1,2,3,4]:
     figLMap[1].set_title(f'Return map of LM system, $r={r}$')
     plt.show()
     plt.close()
+
+
+### Game of Life Systems
+soln=GOL.solveGOL(system=0, L=50, p=0.5, duration=30)
+GOL.animateGOL(soln)
+
+soln=GOL.solveGOL(system=17, duration=30)
+GOL.animateGOL(soln)
+
+
