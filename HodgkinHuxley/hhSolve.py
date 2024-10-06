@@ -97,7 +97,7 @@ def solveHH(system='single', solver='euler',
         kwargs.update({'aij':adjMat, 'pop':population})
         
     if 'noisy' in system:
-        noise = rng.random(len(tList))
+        noise = rng.random(len(tList)) - 0.5
         kwargs.update({'noise':noise})
     kwargs.update({'I0':I0, 'Is':Is, 'fs':fs, 'dt':dt, 'system':system})
     solver_ = solvers.get(solver)

@@ -92,7 +92,7 @@ def Iext(params_, t):
         In : float
             Amplitude, in uA/cm^2, of the noisy input.
         noise : 1D ndarray
-            List of generated random numbers from a uniform distribution [0, 1].
+            List of generated random numbers from a uniform distribution [-0.5, 0.5].
         noise_t : float
             Value of the noise at time t, extracted from `noise(t)`.
         L : int
