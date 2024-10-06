@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "30ed46772240af9f",
+        "id": "329cb01a12efd9fc",
         "type": "tabs",
         "children": [
           {
-            "id": "c78c874a7382e3be",
+            "id": "82d0c114c302739b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,12 +146,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c78c874a7382e3be",
+  "active": "82d0c114c302739b",
   "lastOpenFiles": [
-    "1.md",
+    "1][2][3.md",
     "README.md",
+    "1.md",
     "4.md",
-    "3.md",
-    "1][2][3.md"
+    "3.md"
   ]
 }
