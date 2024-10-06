@@ -8,7 +8,7 @@ This an ongoing project highlighting systems involving:
 5) Neuronal Cellular Automata
 
 ### I. Hodgkin-Huxley (HH) Systems
-These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[1]](#1).
+These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[#^a3671c|1]] [[#^a3671c|[1]]].
 ### Usage:
 Import the package by running  `import HodgkinHuxley as HH`. 
 Use `HH.solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$.
@@ -74,11 +74,23 @@ Import the package by running  `import GameOfLife as GOL`. The `duration` specif
 Use `GOL.solveGOL(system=0, L=, p=, duration=)` to obtain the `duration` number of snapshots. The CA is set in a lattice size `L` and initialized with states from a uniform random distribution with state density "Alive":`p` and "Dead":`1-p`.
 
 **B) Still-Lifes** <br>
-dss
+These are GOL patterns that does not change over time. Specify `system` as a number to observe the following:
+1) Block
+2) Beehive
+3) Loaf
+4) Boat
+5) Tub
+
+**C) Oscillators** <br>
+
 
 ## References:
+
+1. Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500.  ^a3671c
+2. 
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
 <a id="2">[2]</a> Escosio, Rey Audie S., and Johnrob Y. Bantang. "Frequency response analysis of a Hodgkin-Huxley neuron in a generalized current density stimulus." Proceedings of the Samahang Pisika ng Pilipinas (2016). <br>
 <a id="3">[3]</a> Pang, James Christopher S., Christopher P. Monterola, and Johnrob Y. Bantang. "Noise-induced synchronization in a lattice Hodgkin–Huxley neural network." Physica A: Statistical Mechanics and its Applications 393 (2014): 638-645. <br>
 <a id="4">[4]</a> Tsuchiya, Takashi and Yamagishi, Daisuke. "The Complete Bifurcation Diagram for the Logistic Map" Zeitschrift für Naturforschung A, vol. 52, no. 6-7, 1997, pp. 513-516. https://doi.org/10.1515/zna-1997-6-708 <br>
-<a id="5">[5]</a> Gardner, Martin. "Mathematical games-The fantastic combinations of John Conway’s new solitaire game, Life, 1970." _Scientific American, October_: 120-123.
+<a id="5">[5]</a> Gardner, Martin. "Mathematical games-The fantastic combinations of John Conway’s new solitaire game, Life, 1970." _Scientific American, October_: 120-123. <br>
+<a id="4">[6]</a> “Conway’s Game of Life.” _Wikipedia_, Wikimedia Foundation, 16 Sept. 2024, en.wikipedia.org/wiki/Conway%27s_Game_of_Life.
