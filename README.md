@@ -7,6 +7,8 @@ This an ongoing project highlighting systems involving:
 4) Brian's Brain
 5) Neuronal Cellular Automata
 
+For more information on the usage for each system, please refer to the [wiki page](https://github.com/CSG-Bantang/neuronalCA/wiki).
+
 ## I. Hodgkin-Huxley (HH) Systems
 These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[1]](#1). Solvers available are LSODA, forward Euler, and Runge-Kutta 4th order. To start, import the package using  `import HodgkinHuxley as HH`. Allowed systems are single HH, noisy HH, coupled HH, and noisy coupled HH.
 
