@@ -74,33 +74,33 @@ Import the package by running  `import GameOfLife as GOL`. The `duration` specif
 Use `GOL.solveGOL(system=0, L=, p=, duration=)` to obtain the `duration` number of snapshots. The CA is set in a lattice size `L` and initialized with states from a uniform random distribution with state density "Alive":`p` and "Dead":`1-p`.
 
 **B) Still-Lifes** <br>
-These are GOL patterns that does not change over time [[6]](#6). Specify `system` as a number to observe the following:
-1) Block
-2) Beehive
-3) Loaf
-4) Boat
-5) Tub
+These are GOL patterns that does not change over time [[6]](#6). Specify `system` as the number to observe the following:
+1. Block
+2. Beehive
+3. Loaf
+4. Boat
+5. Tub
 
  **C) Oscillators** <br>
- These are GOL patterns that returns to the initial state after finite number of timesteps [[6]](#6). Specify `system` as a number to observe the following:<br>
-6) Blinker (period 2)
-7) Toad (period 3)
-8) Beacon (period 2)
-9) Pulsar (period 3)
-10) Pentadecathlon (period 15)
+ These are GOL patterns that returns to the initial state after finite number of timesteps [[6]](#6). Specify `system` as the number to observe the following:
+6. Blinker (period 2)
+7. Toad (period 3)
+8. Beacon (period 2)
+9. Pulsar (period 3)
+10. Pentadecathlon (period 15)
 
 **D) Creepers and Spaceships** <br>
-These are GOL patterns that continuously creeps or glides across the lattice [[6]](#6). Specify `system` as a number to observe the following:
-11) Glider
-12) Lightweight spaceship (LWSS)
-13) Middleweight spaceship (MWSS)
-14) Heavyweight spaceship (HWSS)
+These are GOL patterns that continuously creeps or glides across the lattice [[6]](#6). Specify `system` as the number to observe the following:
+11. Glider
+12. Lightweight spaceship (LWSS)
+13. Middleweight spaceship (MWSS)
+14. Heavyweight spaceship (HWSS)
 
 **E) Methuselahs** <br>
-These are GOL patterns that takes long periods to stabilize to other patterns.
-15) R-pentomino (1103 timesteps)
-16) Die Hard (130 timesteps)
-17) Acorn (5206 timesteps)
+These are GOL patterns that takes long periods to stabilize to other patterns. [[6]](#6). Specify `system` as the number to observe the following:
+15. R-pentomino (1103 timesteps)
+16. Die Hard (130 timesteps)
+17. Acorn (5206 timesteps)
 
 ### Test Cases:
 Run `main.py` to test the following: <br>
