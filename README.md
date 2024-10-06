@@ -24,20 +24,16 @@ For the external stimulus, there are four sets of parameters which can be implem
 3) Noisy Input [[3]](#3): &emsp;&emsp; $I_{3} = I_n~\eta(t)$, where $\eta(t)\in[-1,1]$, $\langle \eta \rangle_t = 0$
 4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum_{j} I_{ij}$, where $I_{ij} = -g a_{ij} (V_i-V_j)$
 
-**A) Single HH Systems**
-
+**A) Single HH Systems** <br>
 These systems involve single independent HH neuron [[1][2][3]](#1,#2,#3). Any solver can be used, and any combination of $I_{1}$ and $I_{2}$. If both $I_{1}$ and $I_{2}$ are present, $I_1$ works as the bias current. Use `HH.solveHH(system='single', solver=, I0=, ti=,tf=,dt=, Is=,fs=)`.
 
-**B) Noisy Single HH Systems**
-
+**B) Noisy Single HH Systems** <br>
 These systems assume a uniform noise with a zero time-average [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_3$. Use `HH.solveHH(system='noisy', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=)`.
 
-**C) Coupled HH Systems**
-
+**C) Coupled HH Systems** <br>
 These systems assume a square lattice of size `L` and a population $L\times L$ [[3]](#3). Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, and $I_4$. Use `HH.solveHH(system='coupled', solver=, I0=, ti=,tf=,dt=, Is=,fs=, L=,g=)`.
 
-**D) Noisy Coupled HH Systems**
-
+**D) Noisy Coupled HH Systems** <br>
 These systems assume a uniform noise with a zero time-average, and a square lattice of size `L` and a population $L\times L$. Use either `solver='euler'` or `solver='rk4'`. For the external stimulus, use any combination of $I_1$, $I_2$, $I_3$, and $I_4$. For maximum insanity, provide all `kwargs`: `HH.solveHH(system='noisy coupled', solver=, I0=, ti=,tf=,dt=, Is=,fs=, In=, L=,g=)`.
 
 ### Test Cases:
@@ -56,12 +52,10 @@ $r$ is the growth rate and $x_{t}$ is the state of the LM system at time $t$  [[
 ### Usage:
 Import the package by running  `import LogisticMap as LM`. 
 
-**A) Steady-state x(t)**
-
+**A) Steady-state x(t)** <br>
 Use `LM.solveLM(r=,x0=, ti=, tf=, dt=)` to obtain steady-state values over time. Provide the growth rate `r`, where $r \in [0,4]$. Provide initial state `x0` of the system where $x_{0} \in [0,1]$. LM systems are highly stable within these range of values. For the duration, provide initial time `ti`, final time `tf` and timestep `dt`.
 
-**B) Return Map (or Input-Output Map)**
-
+**B) Return Map (or Input-Output Map)** <br>
 Use `LM.logisticReturnMap(r)` to obtain the return map ($x_{t+1}$ vs $x_{t}$) of the logistic equation. Provide the growth rate `r`, where $r \in [0,4]$. LM systems are highly stable within these range of values.
 
 ### Test Cases:
@@ -76,11 +70,11 @@ These systems involve solving for the snapshots of the spatiotemporal dynamics o
 ### Usage:
 Import the package by running  `import GameOfLife as GOL`. The `duration` specifies the number of snapshots to be recorded.
 
-**A) Random Initial State**
-
+**A) Random Initial State** <br>
 Use `GOL.solveGOL(system=0, L=, p=, duration=)` to obtain the `duration` number of snapshots. The CA is set in a lattice size `L` and initialized with states from a uniform random distribution with state density "Alive":`p` and "Dead":`1-p`.
 
-**B) Still-Lifes**
+**B) Still-Lifes** <br>
+dss
 
 ## References:
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
