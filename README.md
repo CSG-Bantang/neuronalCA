@@ -6,6 +6,8 @@ This an ongoing project highlighting systems involving:
 3) Game of Life
 4) Brian's Brain
 5) Neuronal Cellular Automata
+6) Morris-Lecar
+7) Wilson-Cowan
 
 For more information on the usage for each system, please refer to the [wiki page](https://github.com/CSG-Bantang/neuronalCA/wiki).
 
