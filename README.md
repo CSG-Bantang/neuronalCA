@@ -12,13 +12,13 @@ For more information on the usage for each system, please refer to the [wiki pag
 ## I. Hodgkin-Huxley (HH) Systems
 These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[1]](#1). Solvers available are LSODA, forward Euler, and Runge-Kutta 4th order. To start, import the package using  `import HodgkinHuxley as HH`. Allowed systems are single HH, noisy HH, coupled HH, and noisy coupled HH.
 
-More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/Hodgkin‐Huxley-(HH)-Systems).
-
 For the external stimulus, there are four sets of parameters which can be implemented in any combination, except when using LSODA. *LSODA is incompatible with noisy and coupled systems.*
 1) Constant Input: &emsp;&emsp; $I_{1} = I_0$
 2) Sinusoidal Input [[2]](#2): $I_{2} = I_s~\sin(2\pi~f_s t)$
 3) Noisy Input [[3]](#3): &emsp;&emsp; $I_{3} = I_n~\eta(t)$, where $\eta(t)\in[-0.5,0.5]$, $\langle \eta \rangle_t = 0$
 4) Coupling Input [[3]](#3): &ensp; $I_{4} = \sum_{j} I_{ij}$, where $I_{ij} = -g a_{ij} (V_i-V_j)$
+
+More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/Hodgkin‐Huxley-(HH)-Systems).
 
 ## II. Logistic Map (LM) Systems
 These systems involve solving logistic equation given by $x_{t+1} = r x_{t} (1-x{t})$, where
