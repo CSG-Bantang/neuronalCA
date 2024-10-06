@@ -8,7 +8,7 @@ This an ongoing project highlighting systems involving:
 5) Neuronal Cellular Automata
 
 ### I. Hodgkin-Huxley (HH) Systems
-These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[#^a3671c|1]] [[#^a3671c|[1]]].
+These systems involve solving coupled ordinary differential equations (ODEs) to describe the action potential across the neuronal membrane [[#^a3671c|1]] [[#^a3671c|[1]]]. [1](#1).
 ### Usage:
 Import the package by running  `import HodgkinHuxley as HH`. 
 Use `HH.solveHH(system, solver, I0, ti,tf,dt, **kwargs)` to obtain $V, m, h,$ and $n$.
@@ -86,8 +86,9 @@ These are GOL patterns that does not change over time. Specify `system` as a num
 
 ## References:
 
-1. Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500.  ^a3671c
-2. 
+1. <a name="1"></a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500.
+
+
 <a id="1">[1]</a> Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500. <br>
 <a id="2">[2]</a> Escosio, Rey Audie S., and Johnrob Y. Bantang. "Frequency response analysis of a Hodgkin-Huxley neuron in a generalized current density stimulus." Proceedings of the Samahang Pisika ng Pilipinas (2016). <br>
 <a id="3">[3]</a> Pang, James Christopher S., Christopher P. Monterola, and Johnrob Y. Bantang. "Noise-induced synchronization in a lattice Hodgkin–Huxley neural network." Physica A: Statistical Mechanics and its Applications 393 (2014): 638-645. <br>
