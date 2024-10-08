@@ -8,6 +8,8 @@ This an ongoing project highlighting systems involving:
 5) Neuronal Cellular Automata
 6) Morris-Lecar
 7) Wilson-Cowan
+8) EEG Analysis
+9) fMRI Analysis
 
 For more information on the usage for each system, please refer to the [wiki page](https://github.com/CSG-Bantang/neuronalCA/wiki).
 
