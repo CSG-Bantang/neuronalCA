@@ -15,3 +15,6 @@ from .lmSolve import (solveLM, logisticEquation, logisticReturnMap, plotXvsT, pl
 
 from .golutils import (updateGrid, countAliveNeighbors, golRules)
 from .golSolve import (solveGOL, animateGOL)
+
+from .bbutils import updateGrid
+from .bbSolve import (solveBB, animateBB)

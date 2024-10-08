@@ -28,9 +28,9 @@ def countAliveNeighbors(L, prev, j, i):
 
     """
     return sum([prev[j-1  ,i-1], prev[j-1  ,i], prev[j-1  ,i-L+1]
-                  ,prev[j    ,i-1],                prev[j    ,i-L+1]
-                  ,prev[j-L+1,i-1], prev[j-L+1,i], prev[j-L+1,i-L+1]
-                  ])
+               ,prev[j    ,i-1],                prev[j    ,i-L+1]
+               ,prev[j-L+1,i-1], prev[j-L+1,i], prev[j-L+1,i-L+1]
+               ])
 
 def golRules(cell, aliveNeighbors):
     """

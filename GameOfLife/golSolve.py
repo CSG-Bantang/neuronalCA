@@ -13,7 +13,7 @@ from PIL import Image, ImageOps
 
 from numpy import random as nrand
 
-rng = nrand.default_rng()
+rng = nrand.default_rng(17)
 
 def solveGOL(system=0, L=50, p=0.5, duration=30):
     """
@@ -36,14 +36,15 @@ def solveGOL(system=0, L=50, p=0.5, duration=30):
         This will be ignored if system is not 0.
     p : float, default is 0.5
         Initial density of "alive" cells in the CA.
+        Must be between [0,1].
         This will be ignored if system is not 0.
     duration : int, default is 30
-        Number of timesteps to solve GOL system.
+        Number of timesteps to solve GOL CA.
 
     Returns
     -------
     soln : ndarray of shape (duration, L, L)
-        Snapshots of the spatiotemporal dynamics of GOL system.
+        Snapshots of the spatiotemporal dynamics of GOL CA.
 
     """
     if not system:
@@ -62,15 +63,15 @@ def solveGOL(system=0, L=50, p=0.5, duration=30):
         soln[t+1,:,:] = grid
     return soln
 
-def animateGOL(soln, out='anim.gif'):
+def animateGOL(soln, out='animGOL.gif'):
     """
-    Saves the spatiotemporal dynamics of GOL system.
+    Saves the spatiotemporal dynamics of GOL CA.
 
     Parameters
     ----------
     soln : ndarray of shape (duration, L, L)
-        Snapshots of the spatiotemporal dynamics of GOL system.
-    out : str, default is 'anim.gif'
+        Snapshots of the spatiotemporal dynamics of GOL CA.
+    out : str, default is 'animGOL.gif'
         Output file name of the GIF.
         Must end with '.gif'
         
