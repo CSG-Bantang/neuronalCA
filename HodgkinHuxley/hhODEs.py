@@ -112,7 +112,7 @@ def Iext(params_, t):
     Isine = Is * np.sin(2*np.pi*fs*t)
     if 'noisy' in params_.get('system'):
         sigma, eta_t = params_.get('In'), params_.get('noise_t')
-        Inoise = sigma*(eta_t - 0.5)
+        Inoise = sigma*(eta_t)
         I0 += Inoise
     if 'coupled' in params_.get('system'):
         g, aij, Vij = params_.get('g'), params_.get('aij'), params_.get('Vij')

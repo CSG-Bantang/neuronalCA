@@ -43,6 +43,14 @@ To view and save the animation as GIF, use `GOL.animateGOL(soln, out='anim.gif')
 
 More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/Game-of-Life-(GOL)-Cellular-Automata-(CA)).
 
+## IV. Brian's Brain (BB) Cellular Automata (CA)
+These systems involve solving for the snapshots of the spatiotemporal dynamics of a Brian's Brain CA [[7,8]](#7) and its extensions [[9,10]](#9). To start, import the package using `import BriansBrain as BB`. 
+
+The dynamics of the original Brian's Brain can be analyzed by changing the lattice size, duration, and the initial state density `dq` and `df`. <br>
+This package extends the dynamics by changing lattice and neighborhood boundary conditions, firing condition and/or refractory condition.
+
+More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/Brian's-Brain-(BB)-Cellular-Automata-(CA)).
+
 ## References:
 
 1. <a name="1"></a>Hodgkin, Alan L., and Andrew F. Huxley. "A quantitative description of membrane current and its application to conduction and excitation in nerve." The Journal of physiology 117.4 (1952): 500.
@@ -51,3 +59,7 @@ More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/G
 4. <a name="4"></a>Tsuchiya, Takashi and Yamagishi, Daisuke. "The Complete Bifurcation Diagram for the Logistic Map" Zeitschrift für Naturforschung A, vol. 52, no. 6-7, 1997, pp. 513-516. https://doi.org/10.1515/zna-1997-6-708.
 5. <a name="5"></a>Gardner, Martin. "Mathematical games-The fantastic combinations of John Conway’s new solitaire game, Life, 1970." _Scientific American, October_: 120-123.
 6. <a name="6"></a>“Conway’s Game of Life.” _Wikipedia_, Wikimedia Foundation, 16 Sept. 2024, en.wikipedia.org/wiki/Conway%27s_Game_of_Life.
+7. <a name="7"></a>Resnick, Mitchel; Silverman, Brian (1996-02-04). "Exploring Emergence: The Brain Rules". Exploring Emergence. MIT Media Laboratory, Lifelong Kindergarten Group. Retrieved 2008-12-15.
+8. <a name="8"></a>Hawick, K. A., and C. J. Scogings. "Cycles, transients, and complexity in the game of death spatial automaton." Proc. International Conference on Scientific Computing (CSC’11). CSREA, 2011.
+9. <a name="9"></a>Ramos, Reinier Xander A., Jacqueline C. Dominguez, and Johnrob Y. Bantang. "Young and Aged Neuronal Tissue Dynamics With a Simplified Neuronal Patch Cellular Automata Model." Frontiers in Neuroinformatics 15 (2022): 763560.
+10. <a name="10"></a>RXA Ramos and JY Bantang, Steady-state spiking behaviors of neuronal patch model based on an extension of Brian’s brain cellular automata, Proceedings of the Samahang Pisika ng Pilipinas 42, SPP-2024-2B-01 (2024). URL: https://proceedings.spp-online.org/article/view/SPP-2024-2B-01.

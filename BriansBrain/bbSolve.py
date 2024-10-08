@@ -48,6 +48,7 @@ def solveBB(L=50, lattice='toroidal',
     tRefrac : int, default is 1
         Refractory period. 
         Number of timesteps that a neuron will stay "R".
+        Must be nonzero.
     Lambda : int, default is 2
         Firing threshold.
         See `firingRule` for the interpretation.
