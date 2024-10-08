@@ -66,7 +66,7 @@ soln=GOL.solveGOL(system=0, L=50, p=0.5, duration=30)
 GOL.animateGOL(soln)
 
 soln=GOL.solveGOL(system=11, duration=30)
-GOL.animateGOL(soln)
+# GOL.animateGOL(soln)
 
 
 ### Brian's Brain Systems
@@ -74,13 +74,13 @@ soln=BB.solveBB()
 BB.animateBB(soln)
 
 soln=BB.solveBB(neighborhood='vonNeumann',totalistic='inner')
-BB.animateBB(soln)
+# BB.animateBB(soln)
 
 soln=BB.solveBB(Lambda=4, firingRule='<=')
-BB.animateBB(soln)
+# BB.animateBB(soln)
 
 soln=BB.solveBB(tRefrac=2)
-BB.animateBB(soln)
+# BB.animateBB(soln)
 
 
 
