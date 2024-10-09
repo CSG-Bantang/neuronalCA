@@ -24,7 +24,7 @@ For the external stimulus, there are four sets of parameters which can be implem
 
 More comprehensive guide [here](https://github.com/CSG-Bantang/neuronalCA/wiki/Hodgkin‐Huxley-(HH)-Systems).
 
-## II. Logistic Map (LM) Systems
+## II. Logistic Map (LM) Systems and Logistic Cellular Automata
 These systems involve solving logistic equation given by $x_{t+1} = r x_{t} (1-x_{t})$, where
 $r$ is the growth rate and $x_{t}$ is the state of the LM system at time $t$  [[4]](#4). To start, import the package using `import LogisticMap as LM`. 
 
