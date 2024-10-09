@@ -7,6 +7,7 @@ Created on Tue Oct  8 14:05:28 2024
 """
 
 import numpy as np
+import numba as nb
 
 def getNeighbors(propsCA, grid, j, i):
     """
@@ -44,25 +45,29 @@ def getNeighbors(propsCA, grid, j, i):
             final = spherical_vonNeumann_outer(L, grid, j, i)
     return final  
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def toroidal_Moore_inner(L, grid, j, i):
     return np.array([grid[j-1, i-1],   grid[j, i-1],   grid[j-L+1, i-1],
                      grid[j-1, i],     grid[j, i],     grid[j-L+1, i],
                      grid[j-1, i-L+1], grid[j, i-L+1], grid[j-L+1, i-L+1]])
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def toroidal_Moore_outer(L, grid, j, i):
     return np.array([grid[j-1, i-1],   grid[j, i-1],   grid[j-L+1, i-1],
                      grid[j-1, i],                     grid[j-L+1, i],
                      grid[j-1, i-L+1], grid[j, i-L+1], grid[j-L+1, i-L+1]])
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def toroidal_vonNeumann_outer(L, grid, j, i):
     return np.array([grid[j, i-1],   grid[j-1, i], 
                      grid[j-L+1, i], grid[j, i-L+1]])
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def toroidal_vonNeumann_inner(L, grid, j, i):
     return np.array([grid[j, i-1],   grid[j-1, i], grid[j,i],
                      grid[j-L+1, i], grid[j, i-L+1]])
 
-
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def spherical_Moore_outer(L, grid, j, i):
     if j == 0:
         neighbors = np.empty(L-1+3).astype(np.int32)
@@ -80,6 +85,7 @@ def spherical_Moore_outer(L, grid, j, i):
                               grid[j-1, i-L+1], grid[j, i-L+1], grid[j-L+1, i-L+1]])
     return neighbors
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def spherical_Moore_inner(L, grid, j, i):
     if j == 0:
         neighbors = np.empty(L+3).astype(np.int32)
@@ -95,6 +101,7 @@ def spherical_Moore_inner(L, grid, j, i):
                               grid[j-1, i-L+1], grid[j, i-L+1], grid[j-L+1, i-L+1]])
     return neighbors
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def spherical_vonNeumann_outer(L, grid, j, i):
     if j == 0:
         neighbors = np.empty(L-1+1).astype(np.int32)
@@ -111,6 +118,7 @@ def spherical_vonNeumann_outer(L, grid, j, i):
                          grid[j-L+1, i], grid[j, i-L+1]])
     return neighbors
 
+@nb.njit(nb.int32[:](nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def spherical_vonNeumann_inner(L, grid, j, i):
     if j == 0:
         neighbors = np.empty(L+1).astype(np.int32)

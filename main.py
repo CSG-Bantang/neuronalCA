@@ -110,5 +110,3 @@ soln=BB.solveBB(tRefrac=2)
 # BB.animateBB(soln)
 
 
-
-

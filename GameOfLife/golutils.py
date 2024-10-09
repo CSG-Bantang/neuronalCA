@@ -6,6 +6,7 @@ Created on Sun Oct  6 17:03:12 2024
 @author: reinierramos
 """
 
+import numba as nb
 
 STATES=2
 Dead, Alive = range(STATES)
@@ -22,6 +23,7 @@ def updateGrid(L, grid, grid_coords):
         grid[j,i] = golRules(cell, aliveNeighbors)
     return grid
 
+@nb.njit(nb.int32(nb.int32, nb.int32[:,:], nb.int32, nb.int32))
 def countAliveNeighbors(L, prev, j, i):
     """
     Counts the number of alive neighbors of the cell in prev[j,i].
@@ -32,6 +34,7 @@ def countAliveNeighbors(L, prev, j, i):
                ,prev[j-L+1,i-1], prev[j-L+1,i], prev[j-L+1,i-L+1]
                ])
 
+@nb.njit(nb.int32(nb.int32, nb.int32))
 def golRules(cell, aliveNeighbors):
     """
     GOL Transition Rules:

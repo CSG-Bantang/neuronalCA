@@ -73,13 +73,13 @@ def solveBB(L=50, lattice='toroidal',
     """
     dr = 1 - (dq+df)
     
-    grid = rng.choice([0,1,2], size=(L,L), p=(dq,df,dr))
+    grid = rng.choice([0,1,2], size=(L,L), p=(dq,df,dr)).astype(np.int32)
     grid_coords = list(itools.product(range(L), repeat=2))
     
-    gridRefrac = np.zeros((L,L))
+    gridRefrac = np.zeros((L,L), dtype=int)
     gridRefrac[grid==2] = 1
     
-    soln = np.zeros((duration+1, L,L))
+    soln = np.zeros((duration+1, L,L), dtype=np.int32)
     soln[0,:,:] = grid
     
     propsCA = {

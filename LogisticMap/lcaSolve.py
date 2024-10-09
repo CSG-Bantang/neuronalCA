@@ -70,16 +70,16 @@ def solveLCA(rate=4, duration=50, init='uniform', L=50, lattice='toroidal',
     """
     if init=='beta' and kwargs.get('a') and kwargs.get('b'):
         a, b = kwargs.get('a'), kwargs.get('b')
-        grid = rng.beta(a, b, size=(L, L))
+        grid = rng.beta(a, b, size=(L, L), dtype=np.float32)
     if init=='beta' and kwargs.get('mu') and kwargs.get('nu'):
         mu, nu = kwargs.get('mu'), kwargs.get('nu')
         a, b = mu*nu, (1-mu)*nu
-        grid = rng.beta(a, b, size=(L, L))
+        grid = rng.beta(a, b, size=(L, L), dtype=np.float32)
     if init=='uniform':
-        grid = rng.random(size=(L,L))
+        grid = rng.random(size=(L,L), dtype=np.float32)
     grid_coords = list(itools.product(range(L), repeat=2))
     
-    soln = np.zeros((duration+1, L,L))
+    soln = np.zeros((duration+1, L,L), dtype=np.float32)
     soln[0,:,:] = grid
     
     propsCA = {
