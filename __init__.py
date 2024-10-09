@@ -12,6 +12,7 @@ from .hhODEs import (odes, alpham, alphah, alphan, betam, betah, betan,
 from .hhSolvers import lsoda, euler, rk4
 
 from .lmSolve import (solveLM, logisticEquation, logisticReturnMap, plotXvsT, plotReturnMap)
+from .lcaSolve import (solveLCA, animateLCA)
 
 from .golutils import (updateGrid, countAliveNeighbors, golRules)
 from .golSolve import (solveGOL, animateGOL)

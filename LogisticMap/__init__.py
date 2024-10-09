@@ -8,3 +8,4 @@ Created on Sat Oct  5 14:55:43 2024
 
 
 from .lmSolve import (solveLM, logisticEquation, logisticReturnMap, plotXvsT, plotReturnMap)
+from .lcaSolve import (solveLCA, animateLCA)
