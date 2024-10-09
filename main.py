@@ -89,25 +89,25 @@ GOL.animateGOL(soln)
 
 #%%% GOL CA with glider initial
 soln=GOL.solveGOL(system=11, duration=30)
-# # GOL.animateGOL(soln)
+# GOL.animateGOL(soln)
 
 
 #%% Brian's Brain Systems
 #%%% Original BB CA
-# soln=BB.solveBB()
-# BB.animateBB(soln)
+soln=BB.solveBB()
+BB.animateBB(soln)
 
 #%%% BB CA with modified neigborhood
-# soln=BB.solveBB(neighborhood='vonNeumann',totalistic='inner')
-# # BB.animateBB(soln)
+soln=BB.solveBB(neighborhood='vonNeumann',totalistic='inner')
+# BB.animateBB(soln)
 
 #%%% BB CA with modified firing rule
-# soln=BB.solveBB(Lambda=4, firingRule='<=')
-# # BB.animateBB(soln)
+soln=BB.solveBB(Lambda=4, firingRule='<=')
+# BB.animateBB(soln)
 
 #%%% BB CA with modified refractory rule
-# soln=BB.solveBB(tRefrac=2)
-# # BB.animateBB(soln)
+soln=BB.solveBB(tRefrac=2)
+# BB.animateBB(soln)
 
 
 

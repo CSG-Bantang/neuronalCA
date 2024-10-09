@@ -64,8 +64,8 @@ def solveLCA(rate=4, duration=50, init='uniform', L=50, lattice='toroidal',
 
     Returns
     -------
-    soln : TYPE
-        DESCRIPTION.
+    soln : ndarray of shape (duration, L, L)
+        Snapshots of the spatiotemporal dynamics of Logistic CA.
 
     """
     if init=='beta' and kwargs.get('a') and kwargs.get('b'):
